@@ -6,12 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 
+import com.facebook.soloader.SoLoader
+
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        SoLoader.init(this, false)
+        // Initialize jni for yoga layout engine
+        // This will make same condition with
+        // https://github.com/facebook/yoga/blob/9dac56e/java/com/facebook/yoga/YogaNative.java#L15
+        SoLoader.loadLibrary("yoga")
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
